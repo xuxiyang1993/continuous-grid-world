@@ -152,7 +152,6 @@ while simulate:
     # action should be turn left for 2 deg, go straight, turn right for 2 deg
     # action = policy(current_state)
     # drone.delta_direction = action
-    # drone.speed = action
 
     # use key board left and right to control the ownship
     for event in pygame.event.get():
