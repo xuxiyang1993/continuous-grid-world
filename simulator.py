@@ -28,23 +28,26 @@ np.set_printoptions(precision=2)
 
 # display the time step at top right corner
 def time_display(count):
-    font = pygame.font.SysFont("comicsansms", 25)
+    font = pygame.font.SysFont("comicsansms", 20)
     text = font.render("time step: " + str(count), True, black)
     screen.blit(text, (5, 0))
 
 
 # display how many times the ownship flies out of map at top right corner
 def collision_wall(count):
-    font = pygame.font.SysFont("comicsansms", 25)
-    text = font.render("Out of map: " + str(count), True, black)
-    screen.blit(text, (5, 30))
+    font = pygame.font.SysFont("comicsansms", 20)
+    text = font.render("Out of Map: " + str(count), True, black)
+    screen.blit(text, (5, 25))
 
 
 # display how many goals reached at top right corner
-def collision_goal(count):
-    font = pygame.font.SysFont("comicsansms", 25)
+def reach_goal(count):
+    font = pygame.font.SysFont("comicsansms", 20)
     text = font.render("Goal: " + str(count), True, green)
-    screen.blit(text, (5, 60))
+    screen.blit(text, (5, 50))
+
+
+def 
 
 
 # the aircraft object
@@ -190,7 +193,7 @@ while simulate:
                              random.random() * height)
 
             cumulative_reward += 1000
-            simulate = False
+            # simulate = False
             print('total reward collected: ', cumulative_reward)
 
         # update the drone, goal
@@ -203,7 +206,7 @@ while simulate:
 
         time_display(time_step)
         collision_wall(drone.collision_wall)
-        collision_goal(drone.reach_goal)
+        reach_goal(drone.reach_goal)
 
         pygame.display.flip()
 
