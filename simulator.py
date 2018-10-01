@@ -59,7 +59,7 @@ def collision_goal(count):
 
 
 # the aircraft object
-class Dronesprite(pygame.sprite.Sprite):
+class DroneSprite(pygame.sprite.Sprite):
     def __init__(self, position):
         pygame.sprite.Sprite.__init__(self)
         self.src_image = pygame.image.load('images/drone.png')
@@ -210,7 +210,7 @@ for _ in range(intruder_size):
 rect = screen.get_rect()  # screen center position
 
 # drone is the ownship we are controlling
-drone = Dronesprite(rect.center)
+drone = DroneSprite(rect.center)
 drone_group = pygame.sprite.RenderPlain(drone)
 pad_group = pygame.sprite.RenderPlain(*pads)
 goal_group = pygame.sprite.RenderPlain(goal)
