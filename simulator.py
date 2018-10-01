@@ -14,7 +14,7 @@ black = (0, 0, 0)
 green = (0, 200, 0)
 
 # set the window
-size = width, height = 800, 800
+size = width, height = 500, 500
 screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
 gameIcon = pygame.image.load('images/intruder.png')
