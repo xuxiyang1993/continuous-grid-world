@@ -2,6 +2,10 @@
 
 A simulator to test algorithms that can guide the fixed wing aircraft to a random generated destination.
 
+`simulator.py` is the code where this is a randomly generated goal at the beginning of each episode.
+
+`simulator_with_intruder.py` is the code where intruder aircraft will be in this simulator.
+
 ## Requirements
 
 * python 3.6
