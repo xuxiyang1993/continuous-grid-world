@@ -111,7 +111,6 @@ class GoalSprite(pygame.sprite.Sprite):
 
 
 # get the state vector according to current aircraft position, velocity and goal position
-# pads is the list contains all the intruder aircraft sprite
 # own is the ownship we are controlling
 # goal is the goal sprite
 def get_state(own, goal):
