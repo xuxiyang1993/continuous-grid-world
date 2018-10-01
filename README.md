@@ -17,4 +17,6 @@ Make sure that you have the above requirements taken care of, then download all 
 
 
 
-If you have any questions or comments, don't hesitate to send me an email! I am looking for ways to make this code even more computationally efficient. Contact info can be found [here](https://xuxiyang1993.github.io/)
+If you have any questions or comments, don't hesitate to send me an email! I am looking for ways to make this code even more computationally efficient. 
+
+Email: xuxiyang@iastate.edu
