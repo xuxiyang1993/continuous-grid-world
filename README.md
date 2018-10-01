@@ -12,7 +12,7 @@ A simulator to test algorithms that can guide the fixed wing aircraft to a rando
 
 ## Getting Started
 
-Make sure that you have the above requirements taken care of, then download all the files. In the command line, or any python editor change directory to where these two files are located and type:
+Make sure that you have the above requirements taken care of, then download all the files.
 
 
 
