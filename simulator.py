@@ -13,7 +13,7 @@ white = (255, 255, 255)
 black = (0, 0, 0)
 green = (0, 200, 0)
 
-# size of the airspace
+# set the window
 size = width, height = 800, 800
 screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
@@ -36,7 +36,7 @@ def time_display(count):
 # display how many times the ownship flies out of map at top right corner
 def collision_wall(count):
     font = pygame.font.SysFont("comicsansms", 25)
-    text = font.render("Collision with wall: " + str(count), True, black)
+    text = font.render("Out of map: " + str(count), True, black)
     screen.blit(text, (5, 30))
 
 
@@ -44,7 +44,7 @@ def collision_wall(count):
 def collision_goal(count):
     font = pygame.font.SysFont("comicsansms", 25)
     text = font.render("Goal: " + str(count), True, green)
-    screen.blit(text, (5, 90))
+    screen.blit(text, (5, 60))
 
 
 # the aircraft object
@@ -59,9 +59,9 @@ class DroneSprite(pygame.sprite.Sprite):
         self.direction = 0
         self.rad = 0
         # velocity (v_x, v_y) can be decided from the speed scalar and orientation
-        vx = -self.speed * math.sin(self.rad)
-        vy = -self.speed * math.cos(self.rad)
-        self.velocity = (vx, vy)
+        self.vx = -self.speed * math.sin(self.rad)
+        self.vy = -self.speed * math.cos(self.rad)
+        self.velocity = (self.vx, self.vy)
         # this aircraft will be safe if other aircraft are outside this radius
         self.radius = 16
         # the heading angle will be updated according to this delta_direction.
@@ -71,15 +71,14 @@ class DroneSprite(pygame.sprite.Sprite):
         self.k_left = 0
 
         # number of collisions, out of maps, reached goals
-        self.collision_intruder = 0
         self.collision_wall = 0
-        self.collision_goal = 0
+        self.reach_goal = 0
 
     def update(self, deltat):
         # decide the new heading angle according to the action: self.delta_direction
         self.delta_direction = self.k_right + self.k_left
         self.direction += self.delta_direction
-        self.direction %= 360
+        self.direction %= 360  # keep it between (0, 360)
         self.rad = self.direction * math.pi / 180  # turn deg to rad
 
         # decide the new velocity according to the heading angle
@@ -130,8 +129,8 @@ def get_state(own, goal):
 
 
 # generate a goal position
-goal = GoalSprite((random.random() * (width - 200) + 100,
-                   random.random() * (height - 200) + 100))
+goal = GoalSprite((random.random() * width,
+                   random.random() * height))
 
 
 rect = screen.get_rect()  # screen center position
@@ -151,7 +150,8 @@ while simulate:
     current_state = get_state(drone, goal)
 
     # there can plug in some algorithms, input is current_state, output is action
-    # action = algorithm(current_state)
+    # action should be turn left for 2 deg, go straight, turn right for 2 deg
+    # action = policy(current_state)
     # drone.delta_direction = action
     # drone.speed = action
 
@@ -161,9 +161,9 @@ while simulate:
             continue
         down = event.type == KEYDOWN
         if event.key == K_RIGHT:
-            drone.k_right = down * -4
+            drone.k_right = down * -2
         elif event.key == K_LEFT:
-            drone.k_left = down * 4
+            drone.k_left = down * 2
         elif event.key == K_ESCAPE:
             sys.exit(0)
 
@@ -186,13 +186,13 @@ while simulate:
         if pygame.sprite.collide_circle(drone, goal):
             # the ownship reaches the goal position
             collide_goal = True
-            drone.collision_goal += 1
+            drone.reach_goal += 1
 
             # generate a new goal for the aircraft
-            goal.position = (random.random() * (width - 200) + 100,
-                             random.random() * (height - 200) + 100)
+            goal.position = (random.random() * width,
+                             random.random() * height)
 
-        # update the drone, intruder aircraft, goal
+        # update the drone, goal
         drone_group.update(deltat)
         goal_group.update()
 
@@ -202,6 +202,6 @@ while simulate:
 
         time_display(time_step)
         collision_wall(drone.collision_wall)
-        collision_goal(drone.collision_goal)
+        collision_goal(drone.reach_goal)
 
         pygame.display.flip()
