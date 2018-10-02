@@ -121,15 +121,8 @@ class GoalSprite(pygame.sprite.Sprite):
 # own is the ownship we are controlling
 # goal is the goal sprite
 def get_state(own, goal):
-    state_list = []
-
-    state_list.append(own.position[0])
-    state_list.append(own.position[1])
-    state_list.append(own.velocity[0])
-    state_list.append(own.velocity[1])
-    state_list.append(own.direction)
-    state_list.append(goal.position[0])
-    state_list.append(goal.position[1])
+    state_list = [own.position[0], own.position[1], own.velocity[0], own.velocity[1], own.direction, goal.position[0],
+                  goal.position[1]]
 
     return np.array(state_list)
 
