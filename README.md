@@ -2,7 +2,7 @@
 
 A simulator to test algorithms that can guide the fixed wing aircraft to a random generated destination.
 
-`simulator.py` is the code where this is a randomly generated goal at the beginning of each episode.
+`simulator.py` is the code where there is a randomly generated goal at the beginning of each episode.
 
 And you can use keyboard left and right arrow keys to control the aircraft in this simulator.
 It will be amazing if your agent can beat you!
