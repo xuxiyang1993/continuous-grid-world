@@ -19,7 +19,9 @@ At each time step, the aircraft can choose to turn left for 2 deg, go straight, 
 
 ### Reward:
 -1 at each time step
+
 +500 at goal state
+
 -100 if the aircraft flies out of map (map is of size 500 * 500 (pixel))
 
 ## Requirements
