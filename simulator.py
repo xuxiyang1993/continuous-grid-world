@@ -143,6 +143,7 @@ simulate = True
 
 while simulate:
     # while simulating, you can press esc to exit the pygame window
+    # the process will terminate after hitting the boundary or the goal
     time_step += 1
 
     current_state = get_state(drone, goal)
