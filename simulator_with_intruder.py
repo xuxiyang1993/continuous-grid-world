@@ -15,14 +15,14 @@ red = (200, 0, 0)
 green = (0, 200, 0)
 
 # size of the airspace
-size = width, height = 800, 800
+size = width, height = 600, 600
 screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
 gameIcon = pygame.image.load('images/intruder.png')
 pygame.display.set_icon(gameIcon)
 pygame.display.set_caption('Aircraft Guidance Simulator', 'Spine Runtime')
 
-intruder_size = 30  # number of intruder aircraft
+intruder_size = 10  # number of intruder aircraft
 RADIUS = 16  # safe radius for aircraft: above this number will be considered conflict
 no_frame = 1  # one action can last how many frames or time steps?
 tick = 30  # update no more than 30 frames in one second

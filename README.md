@@ -4,8 +4,6 @@ A simulator to test algorithms that can guide the fixed wing aircraft to a rando
 
 `simulator.py` is the code where this is a randomly generated goal at the beginning of each episode.
 
-`simulator_with_intruder.py` is the code where intruder aircraft will be in this simulator.
-
 And you can use keyboard left and right arrow keys to control the aircraft in this simulator.
 It will be amazing if your agent can beat you!
 
@@ -50,7 +48,9 @@ You should submit a policy function which is a mapping from a state to the actio
 
 Make sure that you have the above requirements taken care of, then download all the files.
 
-
+###Note
+If you want to solve more challenging problem, `simulator_with_intruder.py` is the code for you,
+where many intruder aircraft will be in this simulator.
 
 
 If you have any questions or comments, don't hesitate to send me an email! I am looking for ways to make this code even more computationally efficient. 
