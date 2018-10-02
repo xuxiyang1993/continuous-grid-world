@@ -49,7 +49,7 @@ You should submit a policy function which is a mapping from a state to the actio
 
 Make sure that you have the above requirements taken care of, then download all the files.
 
-###Note
+### Note
 If you want to solve more challenging problem, `simulator_with_intruder.py` is the code for you,
 where many intruder aircraft will be in this simulator.
 
