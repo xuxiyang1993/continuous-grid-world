@@ -6,6 +6,8 @@ A simulator to test algorithms that can guide the fixed wing aircraft to a rando
 
 `simulator_with_intruder.py` is the code where intruder aircraft will be in this simulator.
 
+And you can use keyboard left and right arrow keys to control the aircraft in this simulator.
+
 ## MDP Formulation
 
 ### State: 

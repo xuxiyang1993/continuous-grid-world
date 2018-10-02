@@ -177,6 +177,7 @@ while simulate:
             drone.collision_wall += 1
             drone.position = (width-50, height-50)
             drone.direction = 45
+            simulate = False
 
         # check if the ownship reaches the goal state.
         if pygame.sprite.collide_circle(drone, goal):
@@ -189,21 +190,23 @@ while simulate:
                              random.random() * height)
 
             drone.cumulative_reward += 500
-            # simulate = False
+            simulate = False
 
-        # update the drone, goal
-        drone_group.update(deltat)
-        goal_group.update()
+        if simulate:
 
-        # draw the aircraft and the goal
-        drone_group.draw(screen)
-        goal_group.draw(screen)
+            # update the drone, goal
+            drone_group.update(deltat)
+            goal_group.update()
 
-        time_display(time_step)
-        collision_wall(drone.collision_wall)
-        reach_goal(drone.reach_goal)
-        reward_display(drone.cumulative_reward)
+            # draw the aircraft and the goal
+            drone_group.draw(screen)
+            goal_group.draw(screen)
 
-        pygame.display.flip()
+            time_display(time_step)
+            collision_wall(drone.collision_wall)
+            reach_goal(drone.reach_goal)
+            reward_display(drone.cumulative_reward)
 
-        drone.cumulative_reward += -1
+            pygame.display.flip()
+
+            drone.cumulative_reward += -1
