@@ -16,8 +16,11 @@ And you can use keyboard left and right arrow keys to control the aircraft in th
 ### Action:
 At each time step, the aircraft can choose to turn left for 2 deg, go straight, or to turn right for 2 deg.
 
+More precisely, the action space is {+2deg, 0deg, -2deg} where positive means turning left.
+
 ### State Transition:
 
+...
 
 ### Reward:
 -1 at each time step
@@ -25,6 +28,14 @@ At each time step, the aircraft can choose to turn left for 2 deg, go straight, 
 +500 at goal state
 
 -100 if the aircraft flies out of map (map is of size 500 * 500 (pixel))
+
+## Submission
+
+You should submit a policy function which is a mapping from a state to the action.
+
+## Evaluation of Policy
+
+...
 
 ## Requirements
 

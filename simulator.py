@@ -14,7 +14,7 @@ black = (0, 0, 0)
 green = (0, 200, 0)
 
 # set the window
-size = width, height = 500, 500
+size = width, height = 500, 500  # window size
 screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
 gameIcon = pygame.image.load('images/intruder.png')
@@ -29,7 +29,7 @@ np.set_printoptions(precision=2)
 # display the time step at top right corner
 def time_display(count):
     font = pygame.font.SysFont("comicsansms", 20)
-    text = font.render("time step: " + str(count), True, black)
+    text = font.render("Time Step: " + str(count), True, black)
     screen.blit(text, (5, 0))
 
 
@@ -59,8 +59,8 @@ class DroneSprite(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.src_image = pygame.image.load('images/drone.png')
         self.rect = self.src_image.get_rect()
-        self.image = self.src_image  # initial position
-        self.position = (width-50, height-50)
+        self.image = self.src_image
+        self.position = (width-50, height-50)  # initial position
         self.speed = 2  # speed of the ownship is 2 pixel per time step
         self.direction = 45
         self.rad = self.direction * math.pi / 180
@@ -76,7 +76,7 @@ class DroneSprite(pygame.sprite.Sprite):
         self.k_right = 0
         self.k_left = 0
 
-        # number of out of maps, reached goals, cumulative reward
+        # number of out of maps, reached goals, and cumulative reward
         self.collision_wall = 0
         self.reach_goal = 0
         self.cumulative_reward = 0
@@ -179,6 +179,8 @@ while simulate:
             drone.position = (width-50, height-50)
             drone.direction = 45
             simulate = False
+            print('You hit the wall :(')
+            print('Total Reward: ', drone.cumulative_reward)
 
         # check if the ownship reaches the goal state.
         if pygame.sprite.collide_circle(drone, goal):
@@ -192,6 +194,8 @@ while simulate:
 
             drone.cumulative_reward += 500
             simulate = False
+            print('You reach the goal!')
+            print('Total Reward: ', drone.cumulative_reward)
 
         if simulate:
 
@@ -203,6 +207,7 @@ while simulate:
             drone_group.draw(screen)
             goal_group.draw(screen)
 
+            # display time steps, number of times hitting wall, goals reached, the cum reward.
             time_display(time_step)
             collision_wall(drone.collision_wall)
             reach_goal(drone.reach_goal)
