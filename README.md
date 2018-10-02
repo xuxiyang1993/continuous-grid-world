@@ -15,7 +15,8 @@ It will be amazing if your agent can beat you!
 ### Action:
 At each time step, the aircraft can choose to turn left for 2 deg, go straight, or to turn right for 2 deg.
 
-More precisely, the action space is {+2deg, 0deg, -2deg} where positive means turning left.
+More precisely, the action space is {+2deg/s, 0deg/s, -2deg/s} where positive means turning left, 
+with the assumption that each time step is 1 second.
 
 ### State Transition:
 
