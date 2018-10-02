@@ -149,6 +149,7 @@ time_step = -1  # this is the time step displayed at the top right corner.
 simulate = True
 
 while simulate:
+    # while simulating, you can press esc to exit the pygame window
     time_step += 1
 
     current_state = get_state(drone, goal)
