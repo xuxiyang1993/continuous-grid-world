@@ -6,6 +6,22 @@ A simulator to test algorithms that can guide the fixed wing aircraft to a rando
 
 `simulator_with_intruder.py` is the code where intruder aircraft will be in this simulator.
 
+## MDP Formulation
+
+### State: 
+(position_x, position_y, velocity_x, velocity_y, heading angel, goal_pos_x, goal_pos_y) -> (x,y,v_x,v_y,\phi,g_x,g_y)
+
+### Action:
+At each time step, the aircraft can choose to turn left for 2 deg, go straight, or to turn right for 2 deg.
+
+### State Transition:
+
+
+### Reward:
+-1 at each time step
++500 at goal state
+-100 if the aircraft flies out of map (map is of size 500 * 500 (pixel))
+
 ## Requirements
 
 * python 3.6
