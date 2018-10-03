@@ -10,7 +10,7 @@ It will be amazing if your agent can beat you!
 ## MDP Formulation
 
 ### State: 
-The state include the position, velocity, heading angle, and the goal position of the ownship:
+The state include the position, velocity, heading angle, and the goal position of the ownship (ownship is the yellow aircraft we can control):
 
 (position_x, position_y, velocity_x, velocity_y, heading angle, goal_pos_x, goal_pos_y) 
 
@@ -34,7 +34,7 @@ will be
 
 <img src="https://github.com/xuxiyang1993/continuous-grid-world/blob/master/images/transition.png" width="140" height="255" />
 
-where v is fixed speed (2 pixel/s), and the time step (delta t) is assumed to be 1 second. Here we assume at next state s', the aircraft doesn't reach the goal state.
+where v is fixed speed (2 pixel/s), and the time step (delta t) is assumed to be 1 second. Here we assume at next state s', the aircraft doesn't reach the goal state (so that the goal position don't need to be updated).
 
 ### Reward:
 
@@ -43,6 +43,12 @@ where v is fixed speed (2 pixel/s), and the time step (delta t) is assumed to be
 +500 at goal state
 
 -100 if the aircraft flies out of map (map is of size 500 * 500 (pixel))
+
+### Terminal State:
+
+When the ownship reaches the goal position (the distance between the goal and ownship is less than 32 pixel, the ownship is regarded as reaching the goal), the MDP will terminate with a big positive reward.
+
+When the ownship flies out of the map (the position (x,y) is not in the range (0,500)), the MDP will also terminate.
 
 ## Submission
 
