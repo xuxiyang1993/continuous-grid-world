@@ -21,7 +21,6 @@ gameIcon = pygame.image.load('images/intruder.png')
 pygame.display.set_icon(gameIcon)
 pygame.display.set_caption('Aircraft Guidance Simulator', 'Spine Runtime')
 
-no_frame = 1  # one action can last how many frames or time steps?
 tick = 30  # update no more than 30 frames in one second
 np.set_printoptions(precision=2)
 
@@ -150,41 +149,39 @@ while simulate:
         elif event.key == K_ESCAPE:
             sys.exit(0)
 
-    # the simulator will run many frames for one action
-    for _ in range(no_frame):
-        deltat = clock.tick(tick)
-        screen.fill((255, 255, 255))
+    deltat = clock.tick(tick)
+    screen.fill((255, 255, 255))
 
-        # check if the ownship flies out of the map
-        if drone.position[0] < 0 or drone.position[0] > width \
-                or drone.position[1] < 0 or drone.position[1] > height:
-            drone.cumulative_reward += -100
-            simulate = False
-            print('You hit the wall :(')
-            print('Total Reward: ', drone.cumulative_reward)
+    # check if the ownship flies out of the map
+    if drone.position[0] < 0 or drone.position[0] > width \
+            or drone.position[1] < 0 or drone.position[1] > height:
+        drone.cumulative_reward += -100
+        simulate = False
+        print('You hit the wall :(')
+        print('Total Reward: ', drone.cumulative_reward)
 
-        # check if the ownship reaches the goal state.
-        if pygame.sprite.collide_circle(drone, goal):
-            # the ownship reaches the goal position
-            collide_goal = True
+    # check if the ownship reaches the goal state.
+    if pygame.sprite.collide_circle(drone, goal):
+        # the ownship reaches the goal position
+        collide_goal = True
 
-            drone.cumulative_reward += 500
-            simulate = False
-            print('You reach the goal!')
-            print('Total Reward: ', drone.cumulative_reward)
+        drone.cumulative_reward += 500
+        simulate = False
+        print('You reach the goal!')
+        print('Total Reward: ', drone.cumulative_reward)
 
-        # update the drone, goal
-        drone_group.update(deltat)
-        goal_group.update()
+    # update the drone, goal
+    drone_group.update(deltat)
+    goal_group.update()
 
-        # draw the aircraft and the goal
-        drone_group.draw(screen)
-        goal_group.draw(screen)
+    # draw the aircraft and the goal
+    drone_group.draw(screen)
+    goal_group.draw(screen)
 
-        # display time steps, number of times hitting wall, goals reached, the cum reward.
-        time_display(time_step)
-        reward_display(drone.cumulative_reward)
+    # display time steps, number of times hitting wall, goals reached, the cum reward.
+    time_display(time_step)
+    reward_display(drone.cumulative_reward)
 
-        pygame.display.flip()
+    pygame.display.flip()
 
-        drone.cumulative_reward += -1
+    drone.cumulative_reward += -1
