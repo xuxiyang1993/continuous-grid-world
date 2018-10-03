@@ -12,7 +12,7 @@ It will be amazing if your agent can beat you!
 ### State: 
 (position_x, position_y, velocity_x, velocity_y, heading angel, goal_pos_x, goal_pos_y) 
 
--> 
+-> ![alt text](https://github.com/xuxiyang1993/continuous-grid-world/blob/master/images/state.png)
 
 ### Action:
 At each time step, the aircraft can choose to turn left for 2 deg, go straight, or to turn right for 2 deg.
