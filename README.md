@@ -26,7 +26,9 @@ with the assumption that each time step is 1 second.
 
 ### State Transition:
 
-...
+Suppose the current state is S, current action is a, then the next state will be
+
+<img src="https://github.com/xuxiyang1993/continuous-grid-world/blob/master/images/transition.png" width="140" height="255" />
 
 ### Reward:
 -1 at each time step
