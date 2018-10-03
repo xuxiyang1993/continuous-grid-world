@@ -10,7 +10,9 @@ It will be amazing if your agent can beat you!
 ## MDP Formulation
 
 ### State: 
-(position_x, position_y, velocity_x, velocity_y, heading angel, goal_pos_x, goal_pos_y) -> (x,y,v_x,v_y,\phi,g_x,g_y)
+(position_x, position_y, velocity_x, velocity_y, heading angel, goal_pos_x, goal_pos_y) 
+
+-> 
 
 ### Action:
 At each time step, the aircraft can choose to turn left for 2 deg, go straight, or to turn right for 2 deg.
