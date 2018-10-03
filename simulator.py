@@ -171,8 +171,8 @@ while simulate:
         screen.fill((255, 255, 255))
 
         # check if the ownship flies out of the map
-        if drone.position[0] < 8 or drone.position[0] > width - 8 \
-                or drone.position[1] < 8 or drone.position[1] > height - 8:
+        if drone.position[0] < 0 or drone.position[0] > width \
+                or drone.position[1] < 0 or drone.position[1] > height:
             # collide with walls
             drone.cumulative_reward += -100
             drone.collision_wall += 1
