@@ -132,8 +132,9 @@ while simulate:
 
     current_state = get_state(drone, goal)
 
-    # there can plug in some algorithms, input is current_state, output is action
-    # action should be turn left for 2 deg, go straight, turn right for 2 deg
+    # you should define a policy function, input is current_state, output is action
+    # action should be +2 (left), 0 (straight), -2 (right)
+    # after defining policy function, uncomment the following two lines to see your policy performance!
     # action = policy(current_state)
     # drone.delta_direction = action
 
