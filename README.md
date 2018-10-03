@@ -10,9 +10,13 @@ It will be amazing if your agent can beat you!
 ## MDP Formulation
 
 ### State: 
-(position_x, position_y, velocity_x, velocity_y, heading angel, goal_pos_x, goal_pos_y) 
+The state include the position of the ownship, the velocity of the ownship, the heading angle of the ownship, and goal position of the ownship:
 
--> ![alt text](https://github.com/xuxiyang1993/continuous-grid-world/blob/master/images/state.png)
+(position_x, position_y, velocity_x, velocity_y, heading angle, goal_pos_x, goal_pos_y) 
+
+The state is a vector in the following form:
+
+<img src="https://github.com/xuxiyang1993/continuous-grid-world/blob/master/images/state.png" width="160" height="35" />
 
 ### Action:
 At each time step, the aircraft can choose to turn left for 2 deg, go straight, or to turn right for 2 deg.
