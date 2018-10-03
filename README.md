@@ -60,7 +60,7 @@ You should define a policy function which the input is `current_state` from line
 
 `action = policy(current_state)`
 
-Then uncommenting line 137,138 and running the code, it's time to grab a coffe and see how your agent performs.
+After uncommenting line 137,138 and running the code, it's time to grab a coffee and see how your agent performs!
 
 ## Requirements
 
