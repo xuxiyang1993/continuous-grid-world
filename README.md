@@ -26,11 +26,18 @@ with the assumption that each time step is 1 second.
 
 ### State Transition:
 
-Suppose the current state is S, current action is a, then the next state will be
+Suppose the current state is S, current action is a, then the next state 
+
+<img src="https://github.com/xuxiyang1993/continuous-grid-world/blob/master/images/sp.png" width="190" height="35" />
+
+will be
 
 <img src="https://github.com/xuxiyang1993/continuous-grid-world/blob/master/images/transition.png" width="140" height="255" />
 
+where v is fixed speed (2 pixel/s), and the time step (delta t) is assumed to be 1 second.
+
 ### Reward:
+
 -1 at each time step
 
 +500 at goal state
@@ -40,10 +47,6 @@ Suppose the current state is S, current action is a, then the next state will be
 ## Submission
 
 You should submit a policy function which is a mapping from a state to the action.
-
-## Evaluation of Policy
-
-...
 
 ## Requirements
 
