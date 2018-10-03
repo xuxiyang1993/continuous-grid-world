@@ -56,11 +56,11 @@ You should submit a policy function which is a mapping from the state space to t
 
 ## Test Your Policy
 
-You should define a policy function which the input is `current_state` from line 149. And the output of this policy function is the action corresponding to current state. Then call the policy function at line 151 like following:
+You should define a policy function which the input is `current_state` from line 132. And the output of this policy function is the action corresponding to current state. Call the policy function at line 137 like following:
 
 `action = policy(current_state)`
 
-Then running `simulator.py`, you should be able to see how your agent performs.
+Then uncommenting line 137,138 and running the code, it's time to grab a coffe and see how your agent performs.
 
 ## Requirements
 
