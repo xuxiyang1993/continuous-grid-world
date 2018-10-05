@@ -62,6 +62,8 @@ You should define a policy function which the input is `current_state` from line
 
 After uncommenting line 137,138 and running the code, it's time to grab a coffee and see how your agent performs!
 
+Note you can use whatever programming language to solve this problem. If you use other language, you need to store the policy in a file and read the file using Python to get the action at each time step.
+
 ## Requirements
 
 * python 3.6
