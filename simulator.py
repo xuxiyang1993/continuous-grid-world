@@ -58,6 +58,7 @@ class DroneSprite(pygame.sprite.Sprite):
         # the heading angle will be updated according to this delta_direction.
         self.delta_direction = 0
         # use keyboard to control left or right
+        self.keyboard_direction = 0
         self.k_right = 0
         self.k_left = 0
 
@@ -66,8 +67,12 @@ class DroneSprite(pygame.sprite.Sprite):
 
     def update(self, deltat):
         # decide the new heading angle according to the action: self.delta_direction
-        self.delta_direction = self.k_right + self.k_left
-        self.direction += self.delta_direction
+        self.keyboard_direction = self.k_right + self.k_left
+        # if keyboard is controlling, follow the keyboard, else follow the policy
+        if self.keyboard_direction:
+            self.direction += self.keyboard_direction
+        else:
+            self.direction += self.delta_direction
         self.direction %= 360  # keep it between (0, 360)
         self.rad = self.direction * math.pi / 180  # turn deg to rad
 
