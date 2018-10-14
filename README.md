@@ -56,11 +56,11 @@ You should submit a policy function which is a mapping from the state space to t
 
 ## Test Your Policy
 
-You should define a policy function which the input is `current_state` from line 132. And the output of this policy function is the action corresponding to current state. Call the policy function at line 137 like following:
+You should define a policy function which the input is `current_state` from line 137. And the output of this policy function is the action corresponding to current state. Call the policy function at line 142 like following:
 
 `action = policy(current_state)`
 
-After uncommenting line 137,138 and running the code, it's time to grab a coffee and see how your agent performs!
+After uncommenting line 142, 143 and running the code, it's time to grab a coffee and see how your agent performs!
 
 Note you can use whatever programming language to solve this problem. If you use other language, you need to store the policy in a file and read the file using Python to get the action at each time step.
 
