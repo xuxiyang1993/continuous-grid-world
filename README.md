@@ -1,7 +1,7 @@
 # Continuous-Grid-World
 
 ## Updates:
-I just uploaded the policy.csv file.
+I just uploaded the policy.csv file. Actually, we don't need to discretize the velocity_x and velocity_y, since if we specify direction, the velocity can be decided. So there are 5 variables to discretize. To reduce the dimension, you need to calculate the relative position of the goal with respect to the ownship (i.e. subtract the ownship position from the goal position). So that there are only three dimension to discretize. (relative_position_x, relative_position_y, heading angle) and the relative position ranging from -500 to 500. In this way the state dimension can be significantly reduced. For each grid, assign the grid id number from 1 to number of grids and describe what interval it stands for. Then for each grid, specify the action and submit policy.csv.
 
 ##
 
