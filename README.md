@@ -1,5 +1,10 @@
 # Continuous-Grid-World
 
+## Updates:
+I just uploaded the policy.csv file.
+
+##
+
 A simulator to test algorithms that can guide the fixed wing aircraft to a random generated destination.
 
 `simulator.py` is the code where there is a randomly generated goal at the beginning of each episode.
