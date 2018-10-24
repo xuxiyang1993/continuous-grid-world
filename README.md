@@ -1,6 +1,6 @@
 # Continuous-Grid-World
 
-## Updated (10/24):
+## Updates (10/24):
 I uploaded the file `simulator_policy_file_test.py`, from which you can test your policy.csv file. The file format should be the same like `policy.csv` in this repository. Let me know if you have any questions!
 
 ## Updates (10/23):
