@@ -1,5 +1,8 @@
 # Continuous-Grid-World
 
+## Updated (10/24):
+I uploaded the file `simulator_policy_file_test.py`, from which you can test your policy.csv file. The file format should be the same like `policy.csv` in this repository. Let me know if you have any questions!
+
 ## Updates (10/23):
 I just realized that if we combine ownship's and goal's position into relative position variables, we still need to define where the walls are so that we can know when the ownship hits the wall. Previously by combining ownship's position and goal's position, I intended to reduce the state space size, but it seems that there is no straightforward way of doing that. Now that there are 5 variables again, it's suggested to discretize the state space coarsely to keep the memory of policy.csv file relatively small. Thanks for Thanh Phan pointing out my mistake.
 
