@@ -161,8 +161,8 @@ while simulate:
     goalx_index = find_index_from_value(current_state[5], number_grids_goal_x, 500)
     goaly_index = find_index_from_value(current_state[6], number_grids_goal_y, 500)
 
-    row = policy[policy['pos_x']==ownx_index]
-    row = row[row['pos_y']==owny_index]
+    row = policy[policy['pos_x'] == ownx_index]
+    row = row[row['pos_y'] == owny_index]
     row = row[row['angle'] == angle_index]
     row = row[row['goal_x'] == goalx_index]
     row = row[row['goal_y'] == goaly_index]
