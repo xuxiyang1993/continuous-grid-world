@@ -1,2 +1,3 @@
-position_x,position_y,heading,goal_x,goal_y,action
-"(-500,500)","(-500,500)","(0,360)","(-500,500)","(-500,500)",
+pos_x,pos_y,angle,goal_x,goal_y,action
+1,1,1,1,1,1
+1,1,1,1,2,-1
