@@ -1,5 +1,8 @@
 # Continuous-Grid-World
 
+## Updates (10/23):
+I just realized that if we combine ownship's and goal's position into relative position variables, we still need to define where the walls are so that we can know when the ownship hits the wall. Previously by combining ownship's position and goal's position, I intended to reduce the state space size, but it seems that there is no straightforward way of doing that. Now that there are 5 variables again, it's suggested to discretize the state space coarsely to keep the memory of policy.csv file relatively small. Thanks for Thanh Phan pointing out my mistake.
+
 ## Updates:
 I just uploaded the policy.csv file. Actually, we don't need to discretize the velocity_x and velocity_y, since if we specify direction, the velocity can be decided. So there are 5 variables to discretize. To reduce the dimension, you need to calculate the relative position of the goal with respect to the ownship (i.e. subtract the ownship position from the goal position). So that there are only three dimension to discretize. (relative_position_x, relative_position_y, heading angle) and the relative position ranging from -500 to 500. In this way the state dimension can be significantly reduced. For each grid, assign the grid id number from 1 to number of grids and describe what interval it stands for. Then for each grid, specify the action and submit policy.csv.
 
