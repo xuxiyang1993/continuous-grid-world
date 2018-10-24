@@ -3,6 +3,7 @@ import os
 import random
 import sys
 import numpy as np
+import pandas as pd
 import pygame
 from pygame.locals import *
 
@@ -129,6 +130,21 @@ goal_group = pygame.sprite.RenderPlain(goal)
 time_step = -1  # this is the time step displayed at the top right corner.
 simulate = True
 
+# reading policy file
+policy = pd.read_csv('policy.csv',header=0)
+number_grids_pos_x = 500  # for example 500 grids
+number_grids_pos_y = 500
+number_grids_angle = 360
+number_grids_goal_x = 500
+number_grids_goal_y = 500
+
+
+def find_index_from_value(value, number_grids, upper_bound):
+    l = upper_bound/float(number_grids)
+    index = value//l
+
+    return int(index+1)
+
 while simulate:
     # while simulating, you can press esc to exit the pygame window
     # the process will terminate after hitting the boundary or the goal
@@ -138,7 +154,21 @@ while simulate:
 
     # you should define a policy function, input is current_state, output is action
     # action should be +2 (left), 0 (straight), -2 (right)
-    # after defining policy function, uncomment the following two lines to see your policy performance!
+    # after defining policy function, uncomment the following two lines to see your policy performance
+    ownx_index = find_index_from_value(current_state[0], number_grids_pos_x, 500)
+    owny_index = find_index_from_value(current_state[1], number_grids_pos_y, 500)
+    angle_index = find_index_from_value(current_state[4], number_grids_angle, 360)
+    goalx_index = find_index_from_value(current_state[5], number_grids_goal_x, 500)
+    goaly_index = find_index_from_value(current_state[6], number_grids_goal_y, 500)
+
+    row = policy[policy['pos_x']==ownx_index,
+                 policy['pos_y']==owny_index,
+                 policy['angle']==angle_index,
+                 policy['goal_x']==goalx_index,
+                 policy['goal_y']==goaly_index]
+
+    action = row['action']
+
     # action = policy(current_state)
     # drone.delta_direction = action
 
