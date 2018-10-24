@@ -23,6 +23,8 @@ The state is a vector in the following form:
 
 <img src="https://github.com/xuxiyang1993/continuous-grid-world/blob/master/images/state.png" width="160" height="35" />
 
+Note that in the Pygame package of Python, the origin of the coordinate is the top left corner of the screen. And 0 deg corresponds to up direction, 90 deg to left direction, 180 deg to down direction, and 270 deg to right direction.
+
 ### Action:
 At each time step, the aircraft can choose to turn left for 2 deg, go straight, or to turn right for 2 deg.
 
