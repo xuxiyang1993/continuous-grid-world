@@ -1,2 +1,2 @@
-relative_x,relative_y,heading,action
-"(-500,500)","(-500,500)","(0,360)",
+position_x,position_y,heading,goal_x,goal_y,action
+"(-500,500)","(-500,500)","(0,360)","(-500,500)","(-500,500)",
