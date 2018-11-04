@@ -63,11 +63,11 @@ class DroneSprite(pygame.sprite.Sprite):
         self.cumulative_reward = 0
 
     def update(self, deltat):
-        if self.desired_direction > self.direction + 2:
+        if self.desired_direction > self.direction + HEADING_CHANGE_RATE:
             self.direction += HEADING_CHANGE_RATE
         elif self.desired_direction > self.direction:
             self.direction = self.desired_direction
-        elif self.desired_direction < self.direction - 2:
+        elif self.desired_direction < self.direction - HEADING_CHANGE_RATE:
             self.direction -= HEADING_CHANGE_RATE
         elif self.desired_direction < self.direction:
             self.direction = self.desired_direction
