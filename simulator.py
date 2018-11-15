@@ -40,14 +40,14 @@ def reward_display(reward):
 
 # the aircraft object
 class DroneSprite(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, position, direction):
         pygame.sprite.Sprite.__init__(self)
         self.src_image = pygame.image.load('images/drone.png')
         self.rect = self.src_image.get_rect()
         self.image = self.src_image
-        self.position = (width-50, height-50)  # initial position
+        self.position = position  # initial position
         self.speed = 2  # speed of the ownship is 2 pixel per time step
-        self.direction = 45
+        self.direction = direction
         self.rad = self.direction * math.pi / 180
         # velocity (v_x, v_y) can be decided from the speed scalar and heading angle
         self.vx = -self.speed * math.sin(self.rad)
@@ -114,79 +114,93 @@ def get_state(own, goal):
 
     return np.array(state_list)
 
+goal_pos = []
+goal_pos.append([100, 100])
+goal_pos.append([250, 250])
+goal_pos.append([100, 400])
 
-# generate a random goal position
-goal = GoalSprite((random.random() * width,
-                   random.random() * height))
+drone_pos = []
+drone_pos.append([450, 450])
+drone_pos.append([210, 250])
+drone_pos.append([250, 250])
+
+drone_direction = []
+drone_direction.append(45)
+drone_direction.append(0)
+drone_direction.append(-45)
+
+for i in range(3):
+    # generate a random goal position
+    goal = GoalSprite(goal_pos[i])
 
 
-# drone is the ownship we are controlling
-drone = DroneSprite()
-drone_group = pygame.sprite.RenderPlain(drone)
-goal_group = pygame.sprite.RenderPlain(goal)
+    # drone is the ownship we are controlling
+    drone = DroneSprite(drone_pos[i], drone_direction[i])
+    drone_group = pygame.sprite.RenderPlain(drone)
+    goal_group = pygame.sprite.RenderPlain(goal)
 
 
-time_step = -1  # this is the time step displayed at the top right corner.
-simulate = True
+    time_step = -1  # this is the time step displayed at the top right corner.
+    simulate = True
 
-while simulate:
-    # while simulating, you can press esc to exit the pygame window
-    # the process will terminate after hitting the boundary or the goal
-    time_step += 1
+    while simulate:
+        # while simulating, you can press esc to exit the pygame window
+        # the process will terminate after hitting the boundary or the goal
+        time_step += 1
 
-    current_state = get_state(drone, goal)
+        current_state = get_state(drone, goal)
 
-    # you should define a policy function, input is current_state, output is action
-    # action should be +2 (left), 0 (straight), -2 (right)
-    # after defining policy function, uncomment the following two lines to see your policy performance!
-    # action = policy(current_state)
-    # drone.delta_direction = action
+        # you should define a policy function, input is current_state, output is action
+        # action should be +2 (left), 0 (straight), -2 (right)
+        # after defining policy function, uncomment the following two lines to see your policy performance!
+        # action = policy(current_state)
+        # drone.delta_direction = action
 
-    # use key board left and right to control the ownship
-    for event in pygame.event.get():
-        if not hasattr(event, 'key'):
-            continue
-        down = event.type == KEYDOWN
-        if event.key == K_RIGHT:
-            drone.k_right = down * -2
-        elif event.key == K_LEFT:
-            drone.k_left = down * 2
-        elif event.key == K_ESCAPE:
-            sys.exit(0)
+        # use key board left and right to control the ownship
+        for event in pygame.event.get():
+            if not hasattr(event, 'key'):
+                continue
+            down = event.type == KEYDOWN
+            if event.key == K_RIGHT:
+                drone.k_right = down * -2
+            elif event.key == K_LEFT:
+                drone.k_left = down * 2
+            elif event.key == K_ESCAPE:
+                sys.exit(0)
 
-    deltat = clock.tick(tick)
-    screen.fill((255, 255, 255))
+        deltat = clock.tick(tick)
+        screen.fill((255, 255, 255))
 
-    # check if the ownship flies out of the map
-    if drone.position[0] < 0 or drone.position[0] > width \
-            or drone.position[1] < 0 or drone.position[1] > height:
-        drone.cumulative_reward += -100
-        simulate = False
-        print('You hit the wall :(')
-        print('Total Reward: ', drone.cumulative_reward)
+        # check if the ownship flies out of the map
+        if drone.position[0] < 0 or drone.position[0] > width \
+                or drone.position[1] < 0 or drone.position[1] > height:
+            drone.cumulative_reward += -100
+            simulate = False
+            print('You hit the wall :(')
+            print('Total Reward: ', drone.cumulative_reward)
 
-    # check if the ownship reaches the goal state.
-    if pygame.sprite.collide_circle(drone, goal):
-        # the ownship reaches the goal position
-        collide_goal = True
+        # check if the ownship reaches the goal state.
+        if pygame.sprite.collide_circle(drone, goal):
+            # the ownship reaches the goal position
+            collide_goal = True
 
-        drone.cumulative_reward += 500
-        simulate = False
-        print('You reach the goal!')
-        print('Total Reward: ', drone.cumulative_reward)
+            drone.cumulative_reward += 500
+            simulate = False
+            print('You reach the goal!')
+            print('Total Reward: ', drone.cumulative_reward)
 
-    # update the drone, goal
-    drone_group.update(deltat)
-    goal_group.update()
+        # update the drone, goal
+        drone_group.update(deltat)
+        goal_group.update()
 
-    # draw the aircraft and the goal
-    drone_group.draw(screen)
-    goal_group.draw(screen)
+        # draw the aircraft and the goal
+        drone_group.draw(screen)
+        goal_group.draw(screen)
 
-    # display time steps, number of times hitting wall, goals reached, the cum reward.
-    time_display(time_step)
-    reward_display(drone.cumulative_reward)
+        # display time steps, number of times hitting wall, goals reached, the cum reward.
+        time_display(time_step)
+        reward_display(drone.cumulative_reward)
 
-    pygame.display.flip()
+        pygame.display.flip()
 
-    drone.cumulative_reward += -1
+        drone.cumulative_reward += -1
