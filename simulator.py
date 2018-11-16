@@ -115,7 +115,7 @@ def get_state(own, goal):
     return np.array(state_list)
 
 goal_pos = []
-goal_pos.append([100, 100])
+goal_pos.append([200, 100])
 goal_pos.append([250, 250])
 goal_pos.append([100, 400])
 
