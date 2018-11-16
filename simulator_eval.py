@@ -5,6 +5,7 @@ import sys
 import numpy as np
 import pygame
 from pygame.locals import *
+from submissions.caleb.project2code import part2policy
 
 www = (10, 40)
 os.environ['SDL_VIDEO_WINDOW_POS'] = str(www[0]) + "," + str(www[1])
@@ -153,8 +154,8 @@ for i in range(3):
         # you should define a policy function, input is current_state, output is action
         # action should be +2 (left), 0 (straight), -2 (right)
         # after defining policy function, uncomment the following two lines to see your policy performance!
-        # action = policy(current_state)
-        # drone.delta_direction = action
+        action = part2policy.policy(current_state)
+        drone.delta_direction = action
 
         # use key board left and right to control the ownship
         for event in pygame.event.get():
@@ -204,3 +205,7 @@ for i in range(3):
         pygame.display.flip()
 
         drone.cumulative_reward += -1
+
+        if drone.cumulative_reward < -999:
+            simulate = False
+            print('Dead End')
