@@ -5,7 +5,7 @@ import sys
 import numpy as np
 import pygame
 from pygame.locals import *
-from submissions.caleb.project2code import part2policy
+# from submissions import part2policy
 
 www = (10, 40)
 os.environ['SDL_VIDEO_WINDOW_POS'] = str(www[0]) + "," + str(www[1])
